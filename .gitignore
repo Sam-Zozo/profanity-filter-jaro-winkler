@@ -1,0 +1,8 @@
+/
+Pipfile
+Pipfile.lock
+data/.DS_Store
+.DS_Store
+data/__pycache__/filipino_stopwords.cpython-38.pyc
+data/__pycache__/raw_profanity.cpython-38.pyc
+data/__pycache__/tagalog_words.cpython-38.pyc
