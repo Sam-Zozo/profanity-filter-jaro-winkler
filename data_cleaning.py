@@ -85,6 +85,15 @@ def binary_search2(arr, x):
         else:
             return mid
     return -1
+def check(word1, word2):
+    count = 0
+    for c in word1:
+        if c in word2:
+            count+=1
+    if count == len(word1):
+        return True
+    else:
+        return False
 
 def clean_text(sentence):
     tokens = whitespace_tokenizer(sentence)
@@ -102,8 +111,8 @@ def clean_text(sentence):
             newDict[key]['isLeet'] = False
             newDict[key]['originalWord'] = key
         
-        if len(newDict[key]['originalWord']) <= 4 and [x for x in '-.<>,`?}\]\[{=_\'\"::' if x in newDict[key]['originalWord']]:
-             newDict[key]['isStopword'] = True
+        if len(newDict[key]['originalWord']) <= 4 and check(key,'-.<>%)(,`?}\]\[{=_\'\"::') or newDict[key]['originalWord'].isnumeric():
+            newDict[key]['isStopword'] = True
         else:
             newDict[key]['isStopword'] = stopwords_checker(newDict[key]['originalWord'])
 
@@ -130,7 +139,7 @@ def clean_text(sentence):
             profane_compare = [x for x in raw_profanity if jaro_Winkler(newDict[key]['rootWord'],x) >= threshold]
             if profane_compare:
                 newDict[key]['isProfane'] = True
-                newDict[key]['similarProfanity'] = profane_compare
+                # newDict[key]['similarProfanity'] = profane_compare
             else:
                 newDict[key]['isProfane'] = False
         else:
